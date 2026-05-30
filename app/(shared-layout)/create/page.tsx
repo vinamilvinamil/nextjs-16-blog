@@ -44,7 +44,7 @@ export default function CreatePost() {
                  
             // });
             toast.success('Post created successfully');
-            router.push('/');
+            router.push('/blog');
         })
     }
 
