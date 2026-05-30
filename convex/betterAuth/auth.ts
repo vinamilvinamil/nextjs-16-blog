@@ -19,12 +19,10 @@ export const authComponent = createClient<DataModel, typeof schema>(
 
 // Better Auth Options
 export const createAuthOptions = (ctx: GenericCtx<DataModel>) => {
-  const siteurl = process.env.SITE_URL || 'https://nextjs-16-blog.vercel.app'
-  const betterauth = process.env.BETTER_AUTH_SECRET || 'zcIqtUkULof1l3hvXTmqqyU5eHTJGBaaB+ACHJi9vfY='
   return {
     appName: "My App",
-    baseURL: siteurl,
-    secret: betterauth,
+    baseURL: process.env.SITE_URL,
+    secret: process.env.BETTER_AUTH_SECRET,
     database: authComponent.adapter(ctx),
     emailAndPassword: {
       enabled: true,
