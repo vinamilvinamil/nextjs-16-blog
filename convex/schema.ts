@@ -7,6 +7,8 @@ export default defineSchema({
         title: v.string(),
         body: v.string(),
         authorId: v.string(),
+    }).searchIndex('search_title', {
+        searchField: 'title',
     }),  
     comments: defineTable({
         postId: v.id('posts'),
