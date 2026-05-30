@@ -15,7 +15,18 @@ interface PostIdRouteProps {
 
 export async function generateMetadata({ params }: PostIdRouteProps) {
     const { postId } = await params;
-    const post = await fetchQuery(api.posts.getPostById, { postId });
+
+    const getPost = unstable_cache(
+        async (postId: Id<"posts"> ) => {
+            return fetchQuery(api.posts.getPostById, { postId })
+        },
+        ['post', postId],
+        {
+            tags: [`post-${postId}`],
+            revalidate: 86400,
+        }
+    )
+    const post = await getPost(postId);
     if (!post) {
         return {
             title: 'Post not found',
