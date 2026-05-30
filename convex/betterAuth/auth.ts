@@ -19,6 +19,8 @@ export const authComponent = createClient<DataModel, typeof schema>(
 
 // Better Auth Options
 export const createAuthOptions = (ctx: GenericCtx<DataModel>) => {
+  console.log("SITE_URL:", process.env.SITE_URL);
+  console.log("BETTER_AUTH_SECRET:", process.env.BETTER_AUTH_SECRET);
   return {
     appName: "My App",
     baseURL: process.env.SITE_URL,
